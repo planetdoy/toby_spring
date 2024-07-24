@@ -9,17 +9,17 @@ import org.springframework.context.annotation.Configuration;
 public class ObjectFactory {
     @Bean // 각각 하나의 빈을 만드는 메서들이기 때문에 @Bean을 붙여준다.
     public PaymentService paymentService() {
-        return new PaymentService(exRateProvider());
+        return new PaymentService(cachedExRateProvider());
     }
 
-    @Bean
-    public OrderService orderService() {
-        return new OrderService(exRateProvider());
+    @Bean // 각각 하나의 빈을 만드는 메서들이기 때문에 @Bean을 붙여준다.
+    public ExRateProvider cachedExRateProvider() {
+        return new CachedExRateProvider(exRateProvider());
     }
 
     @Bean // 각각 하나의 빈을 만드는 메서들이기 때문에 @Bean을 붙여준다.
     public ExRateProvider exRateProvider() {
-        return new SimpleExRateProvider();
+        return new WebApiExRateProvider();
     }
 }
 
