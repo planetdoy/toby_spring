@@ -2,6 +2,8 @@ package tobyspring.hellospring.payment;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.context.ContextConfiguration;
+import tobyspring.hellospring.TestObjectFactory;
 
 import java.io.IOException;
 import java.math.BigDecimal;

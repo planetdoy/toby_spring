@@ -173,7 +173,6 @@
   - 3. 환율 유효 시간 계산은 정확한 것인가?
 
 ### 테스트와 DI(1)
-
 > 테스트 대상 SUT SYSTEM UNDER TEST
 > 테스트 - 테스트 대상 - 협력자(COLLABORATOR), 협력자(COLLABORATOR
 > 테스트를 하는 동안에만 사용할 테스트 협력자를 만들어서 진행한다.
@@ -187,3 +186,19 @@
 
 > BigDecimal 에 대해서 자세히 알아보자!
 > 값을 비교할 때 주의하자 ex) 자릿수
+
+### 테스트와 DI(2)
+#### 스프링 DI를 이용하는 테스트
+> 테스트용 협력자(Collaborator)/의존 오브젝트를 스프링의 구성 정보를 이용해서
+> 지정하고 컨테이너로부터 테스트 대상을 가져와서 테스트
+> @ContextConfiguration, @Autowired
+
+#### @ContextConfiguration
+> 아래 둘은 한쌍으로 사용한다. 기계적으로 사용
+> @ExtendWith(SpringExtension.class)
+> @ContextConfiguration(classes = TestObjectFactory.class)
+> 컨테이터 테스트가 가능하다.
+> 테스트는 자주 실행해주는게 좋다.
+
+#### @Autowired
+> -
