@@ -249,6 +249,11 @@
 > try with resource 
 >  - AutoCloseable 을 구현한 클래스는 try with resource 안에 선언 시 자동으로 close 한다.
 
+### 변하는 코드 분리하기 - 메소드 추출
+> 변경되지 않는 코드와 변경되거나 확장될 수 있는 코드를 분리한다.
+
+### 
+
 
 
 
