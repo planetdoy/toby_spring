@@ -1,5 +1,6 @@
 package tobyspring.hellospring.exrate;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import tobyspring.hellospring.payment.ExRateProvider;
 
@@ -8,6 +9,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.stream.Collectors;
 
@@ -15,24 +18,33 @@ import java.util.stream.Collectors;
 public class WebApiExRateProvider implements ExRateProvider {
 
     @Override
-    public BigDecimal getExRate(String currency) throws IOException {
-        URL url = new URL("https://open.er-api.com/v6/latest/" + currency);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection(); // Http 에 사용되는 기능을 사용하기 위해 타입 변경
+    public BigDecimal getExRate(String currency) {
+        String url = "https://open.er-api.com/v6/latest/" + currency;
+        URI uri;
+        try {
+            uri = new URI(url);
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
 
-        /**
-         * 파일이나 네트워크를 통해서 넘겨오는 데이터를 바이트 형태로 변경 -> connection.getInputStream()
-         * 캐릭터(문자)로 변경  -> new InputStreamReader(connection.getInputStream())
-         * 사람이 알아 볼 수 있는 형태로 변경하기 위해 처리 -> new BufferedReader(new InputStreamReader(connection.getInputStream()))
-         */
-        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        String response = br.lines().collect(Collectors.joining());// 스트림 타입으로 BufferedReader 로 들어오는 값을 가져올 수 있다.
-        br.close();
+        String response;
+        try {
+            HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection(); // Http 에 사용되는 기능을 사용하기 위해 타입 변경
 
-        ObjectMapper mapper = new ObjectMapper();
-        ExRateData data = mapper.readValue(response, ExRateData.class);
+            try(BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+                response = br.lines().collect(Collectors.joining());// 스트림 타입으로 BufferedReader 로 들어오는 값을 가져올 수 있다.
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-        System.out.println("API ExRate: " + data.rates().get("KRW"));
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            ExRateData data = mapper.readValue(response, ExRateData.class);
+            return data.rates().get("KRW");
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
 
-        return data.rates().get("KRW");
     }
 }
