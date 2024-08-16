@@ -295,7 +295,9 @@
 
 ### ApiTemplate 분리
 > 환율정보 API의 기본 틀
+
 ![ApiTemplate](./IMG/5_42.jpg)  
+
 > 메소드로만 분리했던 템플릿을 오브젝트로 분리하는 과정  
 > *우리는 저자라고 생각하면서 나를 포함한 다른 사람을 위해 적절한 코멘트를 작성하거나 메소드 명을 변경합니다.    
 > JAVA11 부터 WebApi 기능을 지원하는 HttpClient 기능이 추가 되었다.
@@ -303,3 +305,17 @@
 ### 디폴트 콜백과 템플릿 빈
 > 재사용 가능한 Template Bean
 > 디폴트 콜백도 생성자를 통해서 변경을 할 수 있도록 하는걸 추천한다.
+
+### 스프링이 제공하는 템플릿
+> 변하려고 하는 부분, 변하지 않으려는 부분  
+> 템플릿은 빈으로 등록되기에 적합한 경우가 많다.  
+> 이미 스프링이 제공하는 템플릿이 있다.  
+> ex) RestTemplate, JdbcTemplate, JmsTemplate, TransactionTemplate, JpaTemplate, HibernateTemplate  
+
+#### RestTemplate
+> RestTemplate 에서 힌트를 얻어서 템플릿을 직접 만들어 써보자!
+
+![스프링의 Template](./IMG/5_44_1.jpg)
+![RestTemplate](./IMG/5_44_2.jpg)
+![ClientHttpRequestFactory](./IMG/5_44_3.jpg)
+![doExecute](./IMG/5_44_4.jpg)
