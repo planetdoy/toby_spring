@@ -413,3 +413,14 @@
 
 ![구현 도식화](./IMG/7_50_3.jpg)  
 
+### 기술에 독립적인 애플리케이션 서비스
+> @Service
+
+![OrderService](./IMG/7_51_1.jpg)  
+
+![Order](./IMG/7_51_2.jpg)  
+
+![Order에서 JPA 메타데이터 분리](./IMG/7_51_3.jpg)  
+> @ 을 메타데이터라고 한다.  
+
+![/META-INF/orm.xml](./IMG/7_51_4.jpg)
