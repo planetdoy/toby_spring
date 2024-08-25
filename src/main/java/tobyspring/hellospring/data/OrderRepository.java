@@ -6,8 +6,6 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceContext;
 import tobyspring.hellospring.order.Order;
 
-import java.math.BigDecimal;
-
 public class OrderRepository {
     @PersistenceContext
     private EntityManager entityManager;

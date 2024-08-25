@@ -49,11 +49,11 @@ public class PaymentConfig {
     }
 }
 
-class OrderService {
-    ExRateProvider exRateProvider;
-
-    public OrderService(ExRateProvider exRateProvider) {
-        this.exRateProvider = exRateProvider;
-    }
-
-}
+//class OrderService {
+//    ExRateProvider exRateProvider;
+//
+//    public OrderService(ExRateProvider exRateProvider) {
+//        this.exRateProvider = exRateProvider;
+//    }
+//
+//}
