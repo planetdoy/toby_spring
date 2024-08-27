@@ -420,7 +420,29 @@
 
 ![Order](./IMG/7_51_2.jpg)  
 
-![Order에서 JPA 메타데이터 분리](./IMG/7_51_3.jpg)  
+![Order에서 JPA 메타데이터 분리](./IMG/7_51_3.jpg)
 > @ 을 메타데이터라고 한다.  
 
 ![/META-INF/orm.xml](./IMG/7_51_4.jpg)
+
+### OrderRepository DIP
+
+![특정 기술(JPA)에 의존하지 않는 애플리케이션 서비스 만들기](./IMG/7_52_1.jpg)  
+
+![아키텍처 1](./IMG/7_52_2.jpg)  
+
+> 의존관계역전(DIP) 적용
+![DIP를 적용한 아키텍처](./IMG/7_52_3.jpg)  
+
+
+#### "Spring 을 이용하는 테스트이다" 표현하는 @ExtendWith(SpringExtension.class)
+> Junit lib 가 @을 인식하고 Spring 을 띄워서 동작하도록 한다.
+
+```java
+@ExtendWith(SpringExtension.class) // Spring 컨테이너 초기화
+@ContextConfiguration(classes = OrderConfig.class) // Bean 설정
+public class OrderServiceSpringTest {
+    @Autowired // OrderConfig 로 컨테이너에 등록된 Bean 사용
+    OrderService orderService;
+}
+```

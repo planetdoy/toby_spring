@@ -1,7 +1,6 @@
 package tobyspring.hellospring;
 
 import jakarta.persistence.EntityManagerFactory;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +11,6 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import tobyspring.hellospring.data.OrderRepository;
 
 import javax.sql.DataSource;
 
